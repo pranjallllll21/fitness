@@ -13,6 +13,7 @@ import { MembershipSection } from "@/components/membership-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
+import { DeveloperCredit } from "@/components/developer-credit"
 
 export default function HomePage() {
   const [showIntro, setShowIntro] = useState(true)
@@ -41,6 +42,7 @@ export default function HomePage() {
           <MembershipSection />
           <TestimonialsSection />
           <ContactSection />
+          <DeveloperCredit />
           <Footer />
         </>
       )}

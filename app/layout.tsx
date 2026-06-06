@@ -7,8 +7,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Mindset Fitness | Build The Strongest Version Of Yourself',
-  description: 'Premium fitness center offering world-class training, expert coaches, and cutting-edge facilities. Transform your body and mind with Mindset Fitness.',
+  title: 'Earth Fitness | Forge Your Strongest Self',
+  description: 'Earth Fitness — premium gym offering world-class strength training, expert coaches, and elite facilities. Transform your body and conquer your limits.',
   generator: 'v0.app',
   icons: {
     icon: [

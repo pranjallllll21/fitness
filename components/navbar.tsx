@@ -22,15 +22,14 @@ export function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
-      
-      // Update active item based on scroll position
-      const sections = navItems.map(item => item.href.replace('#', ''))
+
+      const sections = navItems.map((item) => item.href.replace("#", ""))
       for (const section of sections.reverse()) {
         const element = document.getElementById(section)
         if (element) {
           const rect = element.getBoundingClientRect()
           if (rect.top <= 100) {
-            const navItem = navItems.find(item => item.href === `#${section}`)
+            const navItem = navItems.find((item) => item.href === `#${section}`)
             if (navItem) setActiveItem(navItem.name)
             break
           }
@@ -46,7 +45,7 @@ export function Navbar() {
     setMobileMenuOpen(false)
     const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      element.scrollIntoView({ behavior: "smooth" })
     }
   }
 
@@ -57,36 +56,36 @@ export function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="fixed top-0 left-0 right-0 z-40"
       style={{
-        backgroundColor: scrolled ? "rgba(10, 10, 10, 0.85)" : "transparent",
-        backdropFilter: scrolled ? "blur(16px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
-        boxShadow: scrolled ? "0 4px 30px rgba(0, 0, 0, 0.3)" : "none",
+        backgroundColor: scrolled ? "rgba(6, 6, 6, 0.92)" : "transparent",
+        backdropFilter: scrolled ? "blur(20px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+        boxShadow: scrolled ? "0 1px 0 rgba(220,38,38,0.2), 0 4px 30px rgba(0,0,0,0.5)" : "none",
         transition: "background-color 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease",
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link 
-            href="#home" 
-            onClick={() => handleNavClick('#home', 'Home')}
+          <Link
+            href="#home"
+            onClick={() => handleNavClick("#home", "Home")}
             className="flex items-center gap-2"
           >
-            <img 
-              src="/images/logo.png" 
-              alt="Absolute Mindset Logo"
-              className="h-10 md:h-12 w-auto"
+            <img
+              src="/images/logo.png"
+              alt="Earth Fitness Logo"
+              className="h-11 md:h-13 w-auto rounded-full"
               style={{
-                mixBlendMode: "screen",
-                filter: "brightness(1.1) contrast(1.1)",
+                objectFit: "contain",
+                filter: "brightness(1.05) contrast(1.05)",
               }}
             />
             <div className="flex flex-col items-start">
-              <span className="text-[10px] tracking-[0.3em] uppercase text-white/50 font-medium leading-none">
-                ABSOLUTE
+              <span className="text-[9px] tracking-[0.4em] uppercase font-medium leading-none" style={{ color: "rgba(220,38,38,0.8)" }}>
+                EARTH
               </span>
               <span className="text-lg md:text-xl font-black tracking-tight leading-none text-white">
-                MINDSET
+                FITNESS
               </span>
             </div>
           </Link>
@@ -97,13 +96,28 @@ export function Navbar() {
               <button
                 key={item.name}
                 onClick={() => handleNavClick(item.href, item.name)}
-                className={`px-4 py-2 text-sm font-medium transition-colors duration-300 ${
-                  activeItem === item.name
-                    ? "text-orange-500"
-                    : "text-white/70 hover:text-white"
-                }`}
+                className="relative px-4 py-2 text-sm font-medium transition-colors duration-300"
+                style={{
+                  color: activeItem === item.name ? "#dc2626" : "rgba(255,255,255,0.65)",
+                }}
+                onMouseEnter={(e) => {
+                  if (activeItem !== item.name)
+                    (e.currentTarget as HTMLElement).style.color = "#fff"
+                }}
+                onMouseLeave={(e) => {
+                  if (activeItem !== item.name)
+                    (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.65)"
+                }}
               >
                 {item.name}
+                {activeItem === item.name && (
+                  <motion.div
+                    layoutId="nav-indicator"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] mx-4 rounded-full"
+                    style={{ backgroundColor: "#dc2626" }}
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
               </button>
             ))}
           </div>
@@ -112,10 +126,20 @@ export function Navbar() {
           <div className="hidden lg:block">
             <Link
               href="#membership"
-              onClick={() => handleNavClick('#membership', 'Membership')}
-              className="px-6 py-2.5 text-sm font-semibold text-white bg-orange-500 rounded-md transition-all duration-300 hover:bg-orange-600 hover:shadow-[0_0_20px_rgba(234,88,12,0.3)]"
+              onClick={() => handleNavClick("#membership", "Membership")}
+              className="px-6 py-2.5 text-sm font-semibold text-white rounded-md transition-all duration-300"
+              style={{
+                background: "linear-gradient(135deg, #dc2626 0%, #991b1b 100%)",
+                boxShadow: "0 2px 10px rgba(220,38,38,0.25)",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(220,38,38,0.45)"
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 10px rgba(220,38,38,0.25)"
+              }}
             >
-              Sign Up
+              Join Now
             </Link>
           </div>
 
@@ -139,10 +163,10 @@ export function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
             style={{
-              backgroundColor: "rgba(10, 10, 10, 0.98)",
+              backgroundColor: "rgba(6, 6, 6, 0.98)",
               backdropFilter: "blur(20px)",
               WebkitBackdropFilter: "blur(20px)",
-              borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+              borderTop: "1px solid rgba(220,38,38,0.2)",
             }}
             className="lg:hidden"
           >
@@ -156,11 +180,10 @@ export function Navbar() {
                 >
                   <button
                     onClick={() => handleNavClick(item.href, item.name)}
-                    className={`block w-full text-left py-3 text-lg font-medium transition-colors ${
-                      activeItem === item.name
-                        ? "text-orange-500"
-                        : "text-white/70"
-                    }`}
+                    className="block w-full text-left py-3 text-lg font-medium transition-colors"
+                    style={{
+                      color: activeItem === item.name ? "#dc2626" : "rgba(255,255,255,0.65)",
+                    }}
                   >
                     {item.name}
                   </button>
@@ -174,10 +197,13 @@ export function Navbar() {
               >
                 <Link
                   href="#membership"
-                  onClick={() => handleNavClick('#membership', 'Membership')}
-                  className="block w-full px-6 py-3 text-center text-sm font-semibold text-white bg-orange-500 rounded-md"
+                  onClick={() => handleNavClick("#membership", "Membership")}
+                  className="block w-full px-6 py-3 text-center text-sm font-semibold text-white rounded-md"
+                  style={{
+                    background: "linear-gradient(135deg, #dc2626 0%, #991b1b 100%)",
+                  }}
                 >
-                  Sign Up
+                  Join Now
                 </Link>
               </motion.div>
             </div>

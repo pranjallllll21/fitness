@@ -4,47 +4,49 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Mindset Fitness Dark Theme - Using hex with oklch fallback */
-  --background: #1a1a1f;
-  --foreground: #fafafa;
-  --card: #222228;
-  --card-foreground: #fafafa;
-  --popover: #1e1e24;
-  --popover-foreground: #fafafa;
-  --primary: #ea580c;
-  --primary-foreground: #1a1a1f;
-  --secondary: #2a2a32;
-  --secondary-foreground: #fafafa;
-  --muted: #3a3a44;
-  --muted-foreground: #9a9aa6;
-  --accent: #3b82f6;
-  --accent-foreground: #fafafa;
+  /* Earth Fitness Dark Theme - Crimson Red & Deep Black */
+  --background: #0a0a0a;
+  --foreground: #f5f5f5;
+  --card: #141414;
+  --card-foreground: #f5f5f5;
+  --popover: #111111;
+  --popover-foreground: #f5f5f5;
+  --primary: #dc2626;
+  --primary-foreground: #f5f5f5;
+  --secondary: #1e1e1e;
+  --secondary-foreground: #f5f5f5;
+  --muted: #2a2a2a;
+  --muted-foreground: #888888;
+  --accent: #991b1b;
+  --accent-foreground: #f5f5f5;
   --destructive: #dc2626;
-  --destructive-foreground: #fafafa;
-  --border: #3a3a44;
-  --input: #2a2a32;
-  --ring: #ea580c;
-  --chart-1: #ea580c;
-  --chart-2: #3b82f6;
-  --chart-3: #10b981;
-  --chart-4: #f59e0b;
-  --chart-5: #8b5cf6;
+  --destructive-foreground: #f5f5f5;
+  --border: #2a2a2a;
+  --input: #1a1a1a;
+  --ring: #dc2626;
+  --chart-1: #dc2626;
+  --chart-2: #ef4444;
+  --chart-3: #b91c1c;
+  --chart-4: #7f1d1d;
+  --chart-5: #450a0a;
   --radius: 0.625rem;
-  --sidebar: #18181c;
-  --sidebar-foreground: #fafafa;
-  --sidebar-primary: #ea580c;
-  --sidebar-primary-foreground: #1a1a1f;
-  --sidebar-accent: #2a2a32;
-  --sidebar-accent-foreground: #fafafa;
-  --sidebar-border: #3a3a44;
-  --sidebar-ring: #ea580c;
-  
-  /* Custom colors */
-  --orange: #ea580c;
-  --orange-glow: #f97316;
-  --electric-blue: #3b82f6;
-  --charcoal: #28282e;
-  --matte-black: #18181c;
+  --sidebar: #0d0d0d;
+  --sidebar-foreground: #f5f5f5;
+  --sidebar-primary: #dc2626;
+  --sidebar-primary-foreground: #f5f5f5;
+  --sidebar-accent: #1e1e1e;
+  --sidebar-accent-foreground: #f5f5f5;
+  --sidebar-border: #2a2a2a;
+  --sidebar-ring: #dc2626;
+
+  /* Custom Earth Fitness colors */
+  --earth-red: #dc2626;
+  --earth-red-glow: #ef4444;
+  --earth-red-dark: #991b1b;
+  --earth-crimson: #b91c1c;
+  --charcoal: #141414;
+  --marble-dark: #111111;
+  --marble-mid: #1a1a1a;
 }
 
 @theme inline {
@@ -86,11 +88,13 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --color-orange: var(--orange);
-  --color-orange-glow: var(--orange-glow);
-  --color-electric-blue: var(--electric-blue);
+  --color-earth-red: var(--earth-red);
+  --color-earth-red-glow: var(--earth-red-glow);
+  --color-earth-red-dark: var(--earth-red-dark);
+  --color-earth-crimson: var(--earth-crimson);
   --color-charcoal: var(--charcoal);
-  --color-matte-black: var(--matte-black);
+  --color-marble-dark: var(--marble-dark);
+  --color-marble-mid: var(--marble-mid);
 }
 
 @layer base {
@@ -98,12 +102,12 @@
     @apply border-border outline-ring/50;
   }
   html {
-    background-color: #1a1a1f;
+    background-color: #0a0a0a;
   }
   body {
     @apply bg-background text-foreground;
-    background-color: #1a1a1f;
-    color: #fafafa;
+    background-color: #0a0a0a;
+    color: #f5f5f5;
   }
 }
 
@@ -112,61 +116,80 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - Earth Fitness Red */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1f;
+  background: #0a0a0a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ea580c;
-  border-radius: 4px;
+  background: #dc2626;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #f97316;
+  background: #ef4444;
 }
 
 /* Glassmorphism utility */
 .glass {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-/* Glow effects */
-.glow-orange {
-  box-shadow: 0 0 20px rgba(234, 88, 12, 0.4),
-              0 0 40px rgba(234, 88, 12, 0.2),
-              0 0 60px rgba(234, 88, 12, 0.1);
+/* Glow effects - Earth Fitness Red (toned down) */
+.glow-red {
+  box-shadow: 0 0 15px rgba(220, 38, 38, 0.25),
+              0 0 30px rgba(220, 38, 38, 0.1);
 }
 
-.glow-blue {
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4),
-              0 0 40px rgba(59, 130, 246, 0.2);
+.glow-red-sm {
+  box-shadow: 0 0 8px rgba(220, 38, 38, 0.2),
+              0 0 16px rgba(220, 38, 38, 0.08);
 }
 
-.text-glow-orange {
-  text-shadow: 0 0 10px rgba(234, 88, 12, 0.5),
-               0 0 20px rgba(234, 88, 12, 0.3);
+.text-glow-red {
+  text-shadow: 0 0 8px rgba(220, 38, 38, 0.3),
+               0 0 16px rgba(220, 38, 38, 0.12);
+}
+
+/* Marble texture overlay */
+.marble-bg {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(220, 38, 38, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(153, 27, 27, 0.04) 0%, transparent 50%);
 }
 
 /* Animated gradient border */
-@keyframes borderGlow {
+@keyframes borderPulse {
   0%, 100% {
-    border-color: rgba(234, 88, 12, 0.5);
+    border-color: rgba(220, 38, 38, 0.6);
+    box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
   }
   50% {
-    border-color: rgba(59, 130, 246, 0.5);
+    border-color: rgba(239, 68, 68, 0.8);
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.4);
   }
 }
 
-.animate-border-glow {
-  animation: borderGlow 3s ease-in-out infinite;
+.animate-border-pulse {
+  animation: borderPulse 2.5s ease-in-out infinite;
+}
+
+/* Animated red ring for logo */
+@keyframes ringRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
 }
 
 /* Hide scrollbar but keep functionality */
@@ -176,4 +199,17 @@ html {
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* EF Logo animation */
+@keyframes efReveal {
+  0% { clip-path: inset(0 100% 0 0); opacity: 0; }
+  100% { clip-path: inset(0 0% 0 0); opacity: 1; }
+}
+
+/* Marble crack line animation */
+@keyframes crackExpand {
+  0% { width: 0; opacity: 0; }
+  50% { opacity: 1; }
+  100% { width: 100%; opacity: 0.6; }
 }

@@ -76,8 +76,16 @@ export function TrainersSection() {
   return (
     <section id="trainers" className="relative py-24 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-charcoal" />
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-electric-blue/5" />
+      <div
+        className="absolute inset-0"
+        style={{ background: "#111111" }}
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "radial-gradient(ellipse at 30% 50%, rgba(220,38,38,0.06) 0%, transparent 60%)",
+        }}
+      />
 
       <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
@@ -88,12 +96,14 @@ export function TrainersSection() {
           className="flex flex-col md:flex-row md:items-end md:justify-between mb-12"
         >
           <div>
-            <p className="text-sm tracking-[0.3em] uppercase text-primary font-medium mb-4">
+            <p className="text-sm tracking-[0.35em] uppercase font-medium mb-4" style={{ color: "#dc2626" }}>
               Expert Trainers
             </p>
-            <h2 className="text-3xl md:text-5xl font-black text-foreground text-balance">
+            <h2 className="text-3xl md:text-5xl font-black text-white text-balance">
               Train With The{" "}
-              <span className="text-primary">Best</span>
+              <span style={{ color: "#dc2626", textShadow: "0 0 20px rgba(220,38,38,0.3)" }}>
+                Best
+              </span>
             </h2>
           </div>
 
@@ -102,18 +112,46 @@ export function TrainersSection() {
             <button
               onClick={() => scroll("left")}
               disabled={currentIndex === 0}
-              className="p-3 rounded-full border border-border hover:border-primary hover:bg-primary/10 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              className="p-3 rounded-full transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+              style={{
+                border: "1px solid rgba(255,255,255,0.1)",
+                background: "rgba(255,255,255,0.02)",
+              }}
+              onMouseEnter={(e) => {
+                if (currentIndex !== 0) {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(220,38,38,0.6)"
+                  ;(e.currentTarget as HTMLElement).style.background = "rgba(220,38,38,0.1)"
+                }
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)"
+                ;(e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.02)"
+              }}
               aria-label="Previous trainer"
             >
-              <ChevronLeft className="w-5 h-5 text-foreground" />
+              <ChevronLeft className="w-5 h-5 text-white" />
             </button>
             <button
               onClick={() => scroll("right")}
               disabled={currentIndex === trainers.length - 1}
-              className="p-3 rounded-full border border-border hover:border-primary hover:bg-primary/10 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              className="p-3 rounded-full transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+              style={{
+                border: "1px solid rgba(255,255,255,0.1)",
+                background: "rgba(255,255,255,0.02)",
+              }}
+              onMouseEnter={(e) => {
+                if (currentIndex !== trainers.length - 1) {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(220,38,38,0.6)"
+                  ;(e.currentTarget as HTMLElement).style.background = "rgba(220,38,38,0.1)"
+                }
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)"
+                ;(e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.02)"
+              }}
               aria-label="Next trainer"
             >
-              <ChevronRight className="w-5 h-5 text-foreground" />
+              <ChevronRight className="w-5 h-5 text-white" />
             </button>
           </div>
         </motion.div>
@@ -131,7 +169,21 @@ export function TrainersSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex-shrink-0 w-72"
             >
-              <div className="group relative rounded-2xl overflow-hidden glass">
+              <div
+                className="group relative rounded-2xl overflow-hidden transition-all duration-300"
+                style={{
+                  background: "rgba(255,255,255,0.02)",
+                  border: "1px solid rgba(255,255,255,0.06)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(220,38,38,0.3)"
+                  ;(e.currentTarget as HTMLElement).style.boxShadow = "0 10px 40px rgba(220,38,38,0.1)"
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.06)"
+                  ;(e.currentTarget as HTMLElement).style.boxShadow = "none"
+                }}
+              >
                 {/* Image */}
                 <div className="relative h-80 overflow-hidden">
                   <img
@@ -139,49 +191,59 @@ export function TrainersSection() {
                     alt={trainer.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-matte-black via-transparent to-transparent" />
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: "linear-gradient(to top, #111111 0%, transparent 60%)",
+                    }}
+                  />
 
                   {/* Hover overlay with socials */}
-                  <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                    <a
-                      href={trainer.instagram}
-                      className="p-3 rounded-full bg-matte-black/80 text-foreground hover:text-primary transition-colors"
-                      aria-label={`${trainer.name} Instagram`}
-                    >
-                      <Instagram className="w-5 h-5" />
-                    </a>
-                    <a
-                      href={trainer.twitter}
-                      className="p-3 rounded-full bg-matte-black/80 text-foreground hover:text-primary transition-colors"
-                      aria-label={`${trainer.name} Twitter`}
-                    >
-                      <Twitter className="w-5 h-5" />
-                    </a>
-                    <a
-                      href={trainer.linkedin}
-                      className="p-3 rounded-full bg-matte-black/80 text-foreground hover:text-primary transition-colors"
-                      aria-label={`${trainer.name} LinkedIn`}
-                    >
-                      <Linkedin className="w-5 h-5" />
-                    </a>
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4"
+                    style={{ background: "rgba(220,38,38,0.15)" }}
+                  >
+                    {[
+                      { icon: Instagram, href: trainer.instagram, label: "Instagram" },
+                      { icon: Twitter, href: trainer.twitter, label: "Twitter" },
+                      { icon: Linkedin, href: trainer.linkedin, label: "LinkedIn" },
+                    ].map(({ icon: Icon, href, label }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        className="p-3 rounded-full transition-all duration-300"
+                        style={{
+                          background: "rgba(6,6,6,0.85)",
+                          border: "1px solid rgba(220,38,38,0.3)",
+                        }}
+                        aria-label={`${trainer.name} ${label}`}
+                        onMouseEnter={(e) => {
+                          (e.currentTarget as HTMLElement).style.background = "#dc2626"
+                          ;(e.currentTarget as HTMLElement).style.borderColor = "#dc2626"
+                        }}
+                        onMouseLeave={(e) => {
+                          (e.currentTarget as HTMLElement).style.background = "rgba(6,6,6,0.85)"
+                          ;(e.currentTarget as HTMLElement).style.borderColor = "rgba(220,38,38,0.3)"
+                        }}
+                      >
+                        <Icon className="w-5 h-5 text-white" />
+                      </a>
+                    ))}
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="text-xl font-bold text-white group-hover:text-red-500 transition-colors duration-300">
                     {trainer.name}
                   </h3>
-                  <p className="text-sm text-primary font-medium mt-1">
+                  <p className="text-sm font-medium mt-1" style={{ color: "#dc2626" }}>
                     {trainer.specialty}
                   </p>
-                  <p className="text-sm text-muted-foreground mt-2">
+                  <p className="text-sm mt-2" style={{ color: "rgba(255,255,255,0.45)" }}>
                     {trainer.bio}
                   </p>
                 </div>
-
-                {/* Glow effect on hover */}
-                <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-primary/30 transition-all duration-300" />
               </div>
             </motion.div>
           ))}

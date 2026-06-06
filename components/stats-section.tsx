@@ -23,7 +23,8 @@ function AnimatedCounter({ end, suffix = "", label, delay = 0 }: AnimatedCounter
       className="text-center"
     >
       <motion.span
-        className="text-4xl md:text-5xl font-black text-primary"
+        className="text-4xl md:text-5xl font-black"
+        style={{ color: "#dc2626" }}
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ duration: 0.5, delay: delay + 0.2 }}
@@ -35,7 +36,7 @@ function AnimatedCounter({ end, suffix = "", label, delay = 0 }: AnimatedCounter
         )}
         {suffix}
       </motion.span>
-      <p className="text-muted-foreground mt-2">{label}</p>
+      <p className="mt-2 text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{label}</p>
     </motion.div>
   )
 }
@@ -88,10 +89,13 @@ export function StatsSection() {
 
   return (
     <section ref={ref} className="relative py-24 overflow-hidden">
-      {/* Parallax background */}
+      {/* Parallax red-dark background */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-primary/10 via-charcoal to-electric-blue/10"
-        style={{ y: backgroundY }}
+        className="absolute inset-0"
+        style={{
+          y: backgroundY,
+          background: "linear-gradient(135deg, rgba(220,38,38,0.08) 0%, #111111 50%, rgba(153,27,27,0.06) 100%)",
+        }}
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -99,18 +103,43 @@ export function StatsSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="glass rounded-3xl p-6 sm:p-8 md:p-12"
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-            {stats.map((stat, index) => (
-              <AnimatedCounter
-                key={stat.label}
-                end={stat.end}
-                suffix={stat.suffix}
-                label={stat.label}
-                delay={index * 0.1}
-              />
-            ))}
+          {/* Top label */}
+          <p className="text-center text-sm tracking-[0.35em] uppercase font-medium mb-10" style={{ color: "#dc2626" }}>
+            By The Numbers
+          </p>
+
+          <div
+            className="rounded-3xl p-6 sm:p-8 md:p-12"
+            style={{
+              background: "rgba(255,255,255,0.02)",
+              border: "1px solid rgba(220,38,38,0.15)",
+              backdropFilter: "blur(12px)",
+              boxShadow: "0 0 60px rgba(220,38,38,0.06), 0 20px 60px rgba(0,0,0,0.4)",
+            }}
+          >
+            {/* Red divider line */}
+            <div
+              className="w-20 h-0.5 mx-auto mb-10 rounded-full"
+              style={{ background: "linear-gradient(90deg, transparent, #dc2626, transparent)" }}
+            />
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+              {stats.map((stat, index) => (
+                <AnimatedCounter
+                  key={stat.label}
+                  end={stat.end}
+                  suffix={stat.suffix}
+                  label={stat.label}
+                  delay={index * 0.1}
+                />
+              ))}
+            </div>
+
+            <div
+              className="w-20 h-0.5 mx-auto mt-10 rounded-full"
+              style={{ background: "linear-gradient(90deg, transparent, #dc2626, transparent)" }}
+            />
           </div>
         </motion.div>
       </div>
